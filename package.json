@@ -1,7 +1,6 @@
 {
   "name": "Project Cherif",
   "version": "1.0.1",
-  "description": "Expanding on TodoMVC to move it to production",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha src/server/test",
@@ -11,19 +10,14 @@
     "devauth": "nodemon src/authserver/server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kwhinnery/todomvc-plusplus.git"
+    "type": "git"
   },
   "keywords": [
     "tutorial",
     "node.js"
   ],
-  "author": "Kevin Whinnery (front end code by Evan You)",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kwhinnery/todomvc-plusplus/issues"
   },
-  "homepage": "https://github.com/kwhinnery/todomvc-plusplus#readme",
   "dependencies": {
     "@headlessui/vue": "^1.4.2",
     "@vue-hero-icons/outline": "^1.7.2",
