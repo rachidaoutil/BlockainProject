@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Data </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap" rel="stylesheet">
+
+
+
+    <% if (env === 'production') { %>
+    <link rel="stylesheet" href="/tailwind.css">
+    <% } else { %>
+    <link rel="stylesheet" href="/tailwind.css">
+    <% } %>
+    <link rel="stylesheet" href="/app.min.css">
+
+    <link rel="icon" 
+      type="image/jpg" 
+      href="/image/logo.jpg">
+
+
+  </head>
+  <body>
+
+
+    </div>
+
+    <main id="todoapp" class="bg-white font-montserrat">
+      <header class="h-24 sm:h-32 flex items-center">
+          <div class="container mx-auto px-6 sm:px-12 flex items-center justify-between">
+              <div class="text-black font-black text-2xl flex items-center">
+                  <span class="w-6 h-6 rounded-full bg-blue-500 mr-4"></span> Welcome To You Mcoin Project
+              </div>
+              <div class="flex items-center">
+                  <nav class="text-black text-lg hidden lg:flex items-center">
+                      <a href="#" class="py-2 px-6 flex hover:text-blue-500">
+                          Home
+                      </a>
+                      <a href="#" class="py-2 px-6 flex hover:text-blue-500">
+                          Registre
+                      </a>
+                      <a href="/login" class="py-2 px-6 flex text-blue-500">
+                          Log In
+                      </a>
+                  </nav>
+                  <button class="lg:hidden flex flex-col">
+                      <span class="w-6 h-px bg-gray-900 mb-1"></span>
+                      <span class="w-6 h-px bg-gray-900 mb-1"></span>
+                      <span class="w-6 h-px bg-gray-900 mb-1"></span>
+                  </button>
+              </div>
+          </div>
+      </header>
+      <div class="w-full flex flex-wrap">
+
+        <div class="w-full md:w-1/2 flex flex-col">
+          <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+            </div>
+            <div class="relative px-12 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+              <div class="max-w-md mx-auto">
+             
+                <div class="font-medium self-center text-xl sm:text-2xl uppercase w-60 text-center bg-blue-600 p-6 rounded-full text-white">1 Mcoin = 100$</div>
+  
+                <div class="divide-y divide-gray-200">
+                  <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                    <div class="relative">
+                      <input autocomplete="off" id="email" name="email" type="number" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Amount" />
+                      <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter your amount</label>
+                    </div>
+                    <div class="relative p-3">
+                      <span class="text-black">
+                        You will be paying:
+                      <span class=" font-black "> 1009$</span>
+                      </span> 
+  
+                    </div>
+                    <div class="text-center mt-3 text-2xl">
+                      <a href="#" class="bg-blue-600 text-white text-xl p-3 text-2xl px-10 text-bold rounded-full"><small>Buy Now</small></a>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+          <div class="w-1/2 ">
+            <image class="object-cover  hidden md:block" src="/image/mainlogo.png" ></image>
+            </div>
+        </div>
+ 
+      </div>
+
+      <div
+      v-if = "home" 
+
+      class=" min-h-screen flex flex-col items-center justify-center bg-gray-100"
+    >
+      <div
+        class="
+          flex flex-col
+          bg-white
+          shadow-md
+          px-4
+          sm:px-6
+          md:px-8
+          lg:px-10
+          py-8
+          rounded-3xl
+          w-50
+          max-w-md
+        "
+      >
+        <div class="font-medium self-center text-xl sm:text-3xl text-gray-800">
+          Welcome Back
+        </div>
+        <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
+          Enter your credentials to access your account
+        </div>
+
+        <div class="mt-10">
+          <form action="#">
+            <div class="flex flex-col mb-5">
+              <label
+                for="email"
+                class="mb-1 text-xs tracking-wide text-gray-600"
+                >E-Mail Address:</label
+              >
+              <div class="relative">
+                <div
+                  class="
+                    inline-flex
+                    items-center
+                    justify-center
+                    absolute
+                    left-0
+                    top-0
+                    h-full
+                    w-10
+                    text-gray-400
+                  "
+                >
+                  <i class="fas fa-at text-blue-500"></i>
+                </div>
+
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  class="
+                    text-sm
+                    placeholder-gray-500
+                    pl-10
+                    pr-4
+                    rounded-2xl
+                    border border-gray-400
+                    w-full
+                    py-2
+                    focus:outline-none focus:border-blue-400
+                  "
+                  placeholder="Enter your email"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col mb-6">
+              <label
+                for="password"
+                class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                >Password:</label
+              >
+              <div class="relative">
+                <div
+                  class="
+                    inline-flex
+                    items-center
+                    justify-center
+                    absolute
+                    left-0
+                    top-0
+                    h-full
+                    w-10
+                    text-gray-400
+                  "
+                >
+                  <span>
+                    <i class="fas fa-lock text-blue-500"></i>
+                  </span>
+                </div>
+
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  class="
+                    text-sm
+                    placeholder-gray-500
+                    pl-10
+                    pr-4
+                    rounded-2xl
+                    border border-gray-400
+                    w-full
+                    py-2
+                    focus:outline-none focus:border-blue-400
+                  "
+                  placeholder="Enter your password"
+                />
+              </div>
+            </div>
+
+            <div class="flex w-full">
+              <button
+                type="submit"
+                class="
+                  flex
+                  mt-2
+                  items-center
+                  justify-center
+                  focus:outline-none
+                  text-white text-sm
+                  sm:text-base
+                  bg-blue-500
+                  hover:bg-blue-600
+                  rounded-2xl
+                  py-2
+                  w-full
+                  transition
+                  duration-150
+                  ease-in
+                "
+              >
+                <span class="mr-2 uppercase">Sign In</span>
+                <span>
+                  <svg
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex justify-center items-center mt-6">
+        <a
+          href="#"
+          target="_blank"
+          class="
+            inline-flex
+            items-center
+            text-gray-700
+            font-medium
+            text-xs text-center
+          "
+        >
+          <span class="ml-2"
+            >You don't have an account?
+            <a
+              href="#"
+              class="text-xs ml-2 text-blue-500 font-semibold"
+              >Register now</a
+            ></span
+          >
+        </a>
+      </div>
+    </div>
+  </main>
+
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+    <% if (env === 'production') { %>
+    <script src="/app.min.js"></script>
+    <% } else { %>
+    <script src="/app.min.js"></script>
+    <% } %>
+  </body>
+
+  
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LogIn </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap" rel="stylesheet">
+
+
+
+    <% if (env === 'production') { %>
+    <link rel="stylesheet" href="/tailwind.css">
+    <% } else { %>
+    <link rel="stylesheet" href="/tailwind.css">
+    <% } %>
+    <link rel="stylesheet" href="/app.min.css">
+
+    <link rel="icon" 
+      type="image/jpg" 
+      href="/image/logo.jpg">
+
+
+  </head>
+  <body>
+
+    <div id="particles-js"></div>
+
+
+    <main id="todoapp" class="font-montserrat">
+      <header class="h-24 sm:h-32 flex items-center">
+          <div class="container mx-auto px-6 sm:px-12 flex items-center justify-between">
+              <div class="text-black font-black text-2xl flex items-center">
+                  <span class="w-6 h-6 rounded-full bg-blue-500 mr-4"></span> Welcome To You Mcoin Project
+              </div>
+              <div class="flex items-center">
+                  <nav class="text-black text-lg hidden lg:flex items-center">
+                      <a  href="/" class="py-2 px-6 flex hover:text-blue-500">
+                          Home
+                      </a>
+                      
+                      <a  href="#" v-if = "HaveAccount" v-on:click.prevent="notSignIn"   class="py-2 px-6 flex hover:text-blue-500">
+                          Registre
+                      </a>
+
+                      <a href="#" v-if = "NoAccount"  class="py-2 px-6 flex text-blue-500">
+                        Registre
+                    </a>
+
+                      <a v-if = "HaveAccount" href="" class="py-2 px-6 flex text-blue-500">
+                          Log In
+                      </a>
+                      <a v-if = "NoAccount"  href="#" v-on:click.prevent="SignedIn"  class="py-2 px-6 flex hover:text-blue-500">
+                        Log In
+                    </a>
+                  </nav>
+                  <button class="lg:hidden flex flex-col">
+                      <span class="w-6 h-px bg-gray-900 mb-1"></span>
+                      <span class="w-6 h-px bg-gray-900 mb-1"></span>
+                      <span class="w-6 h-px bg-gray-900 mb-1"></span>
+                  </button>
+              </div>
+          </div>
+      </header>
+
+      <div class="w-full flex flex-wrap">
+
+        <!-- Login Section -->
+        <div  v-if = "HaveAccount" class="w-full md:w-1/2 flex flex-col">
+
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-3xl">Welcome Back.</p>
+                <form class="flex flex-col pt-3 md:pt-8" @submit="checkUserloginForm" >
+                    <div class="flex flex-col pt-4">
+                        <label for="email" class="text-lg">Username</label>
+                        <input  v-model="user.username" type="text" id="Username" placeholder="Username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+    
+                    <div class="flex flex-col pt-4">
+                        <label  for="password" class="text-lg">Password</label>
+                        <input v-model="password" type="password" id="passwordlog" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+    
+                    <input id="loginbtn" type="submit" value="Log In" class="bg-gray-800 text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                </form>
+                <div class="text-center pt-12 pb-12">
+                    <p>Don't have an account? <a href=""  v-on:click.prevent="notSignIn" class="underline font-semibold">Register here.</a></p>
+                </div>
+            </div>
+
+        </div>
+
+            <!-- Registre Section -->
+        <div  v-if = "NoAccount" class="w-full md:w-1/2 flex flex-col">
+
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-3xl">Welcome.</p>
+                <form class="flex flex-col pt-3 md:pt-8" @submit="checkUserAddForm" >
+                    <div class="flex flex-col pt-4">
+                        <label for="email" class="text-lg">Email</label>
+                        <input v-model = "user.email" type="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label for="username" class="text-lg">Username</label>
+                        <input v-model = "user.username" type="text" id="username" placeholder="your username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+    
+                    <div class="flex flex-col pt-4">
+                        <label for="password" class="text-lg">Password</label>
+                        <input  v-model = "password" onkeyup='check();'  type="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+    
+                    <div class="flex flex-col pt-4">
+                      <label for="password" class="text-lg">Confirme Password</label>
+                      <input v-model = "passwordConfirm" onkeyup='check();'  type="password"  id="confirm_password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                      <span  id='message'></span>
+                    </div>
+                    <input type="submit" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                </form>
+                <div class="text-center pt-12 pb-12">
+                    <p>You have an account? <a href="" v-on:click.prevent="SignedIn" class="underline font-semibold">login here.</a></p>
+                </div>
+            </div>
+
+        </div>
+
+
+  
+
+        <!-- Image Section -->
+        <div class="w-1/2 ">
+            <img class="object-cover  hidden md:block" src="/image/loginlogo.png">
+        </div>
+    </div>
+
+
+  </main>
+
+
+  <script src="/particles.js"></script>
+  
+  <script>
+    document.re
+    particlesJS.load('particles-js', '/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+  </script>
+
+  <script>
+ var check = function() {
+  if (document.getElementById('password').value !== "" && document.getElementById('password').value ==
+    document.getElementById('confirm_password').value ) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'Good!';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Password not matching';
+  }
+}
+  </script>
+
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+    <% if (env === 'production') { %>
+    <script src="/app.min.js"></script>
+    <% } else { %>
+    <script src="/app.min.js"></script>
+    <% } %>
+  </body>
+
+  
+</html>
