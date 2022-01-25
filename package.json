@@ -1,7 +1,10 @@
 {
   "name": "BlockChain",
   "version": "1.0.1",
+<<<<<<< HEAD
   "description": "hey",
+=======
+>>>>>>> 2cf1fad142bff3b17de62a171191fea7c1716448
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha src/server/test",
@@ -11,19 +14,28 @@
     "devauth": "nodemon src/authserver/server.js"
   },
   "repository": {
+<<<<<<< HEAD
     "type": "git",
     "url": "git+https://github.com/"
+=======
+    "type": "git"
+>>>>>>> 2cf1fad142bff3b17de62a171191fea7c1716448
   },
   "keywords": [
     "tutorial",
     "node.js"
   ],
+<<<<<<< HEAD
   "author": "Rachid Aoutil",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com"
   },
   "homepage": "ttps://github.com",
+=======
+  "bugs": {
+  },
+>>>>>>> 2cf1fad142bff3b17de62a171191fea7c1716448
   "dependencies": {
     "@headlessui/vue": "^1.4.2",
     "@vue-hero-icons/outline": "^1.7.2",
