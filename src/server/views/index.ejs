@@ -10,13 +10,8 @@
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap" rel="stylesheet">
 
-
-
-    <% if (env === 'production') { %>
-    <link rel="stylesheet" href="/tailwind.css">
-    <% } else { %>
-    <link rel="stylesheet" href="/tailwind.css">
-    <% } %>
+   
+    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/app.min.css">
 
     <link rel="icon" 
@@ -190,14 +185,8 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="/app.js"></script>
 
-
-
-    <% if (env === 'production') { %>
-    <script src="/app.min.js"></script>
-    <% } else { %>
-    <script src="/app.min.js"></script>
-    <% } %>
   </body>
 
   

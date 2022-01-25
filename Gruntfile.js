@@ -26,6 +26,30 @@ module.exports = function(grunt) {
           }
         }
     },
+   /*    purgecss: {
+      my_target: {
+        options: {
+          content: ['src/server/views/*.html','src/server/views/*.ejs'],
+          extractors: () => [
+            {
+                extractor: class {
+                    static extract(content) {
+                        return content.match(/[\w-/:]+(?<!:)/g) || []
+                    }
+                },
+                extensions: ['html', 'vue', 'ejs']
+             }
+        ]
+        },
+        files: {
+          'public/lessCss.css': ['src/browser/static/tailwind.css']
+        }
+      }
+    },  */
+
+
+
+
 
 
 
@@ -84,6 +108,15 @@ module.exports = function(grunt) {
   });
 
   // Load third party tasks
+
+  grunt.loadNpmTasks('grunt-purgecss');
+
+  grunt.loadNpmTasks('grunt-purifycss');
+  grunt.loadNpmTasks('grunt-postcss')
+
+  grunt.loadNpmTasks('grunt-run');
+
+
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-copy');
 
