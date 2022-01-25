@@ -22,7 +22,7 @@ mongoose.connect("mongodb+srv://MyApps:Kj8qg55DbYB4cWMb@cluster0.ytrbe.mongodb.n
   io.on('connection',(socket)=>{
     console.log('user connected')
     socket.on('joinRoom',(data)=>{      // data will look like => {myID: "123123"}
-        console.log('user joined room')
+        console.log('An user joined room')
         socket.join(data.myID)          
 
     Transaction.watch().on('change',(change)=>{
