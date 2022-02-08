@@ -1,9 +1,10 @@
 'use strict';
 
 const mongoose = require("mongoose");
-const Transaction = require('./models/transaction')
-const buyorder = require('./models/buyorder')
-const sellorder = require('./models/sellorder')
+const Transaction = require('./models/_')
+const buyorder = require('./models/orders')
+const sellorder = require('./models/orders')
+const MarketEngine = require("./services/MarketEngine");
 
 
 
@@ -17,7 +18,8 @@ exports.init = function(_io) {
 mongoose.connect("mongodb+srv://MyApps:Kj8qg55DbYB4cWMb@cluster0.ytrbe.mongodb.net/block", {useNewUrlParser: true, useUnifiedTopology: true })
 .then((res)=> 
 {
-  console.log(`Connection Succesful ${res}`)
+  console.log(`Connection Succesfull ${res}`)
+  MarketEngine.StartMarketEngine()
   io = _io;
   io.on('connection',(socket)=>{
     console.log('user connected')

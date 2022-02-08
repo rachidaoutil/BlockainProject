@@ -2,19 +2,27 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
-const userSchema = Schema({
+const dataschema = Schema({
 
-    Initiator: {
+    userID: {
         type: String,
         required: true,
     },
-    Beneficiary: {
+
+    orderID: {
         type: String,
+        required: true,
     },
-    credit: {
+
+    price: {
         type: Number,
-    }
-    ,
+        required: true,
+    },
+
+    qty: {
+        type: Number
+    },
+
     date: {
         type: Date,
         default: Date.now(),
@@ -23,4 +31,5 @@ const userSchema = Schema({
 });
 
 
-module.exports = Balances = mongoose.model("balances", userSchema, "balances");
+
+module.exports = TXS = mongoose.model("txs", dataschema, "txs");

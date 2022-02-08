@@ -230,20 +230,23 @@
                            </div><br>
                            <center>
                               <div id="empty-cover-art"
-                                 class="shadow-md py-5 h-28 rounded w-56 bg-blue-100 text-center opacity-50 md:border-solid md:border-2 md:border-blue-800">
+                                 class="shadow-md py-5 h-40 rounded w-64 bg-blue-100 text-center opacity-50 md:border-solid md:border-2 md:border-blue-800">
                                  <center><img
                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png"
                                        class="h-16 "></center>
                                  <div class="">
-                                    <span class="font-mono bg-white rounded">0x3e622535435345345</span>
+                                    <span class="font-mono bg-white rounded"> Address: <strong>{{user.userID}}</strong> </span>
+                                    <br>
+                                    <span class="font-mono bg-white rounded">Account: <strong>{{user.username}}</strong></span>
+
                                  </div>
                               </div>
                               <br><strong>My Balance</strong><br>
                               <div class="flex flex-wrap justify-center space-x-3">
-                                 <option value="1"
+                                 <option v-on:click.prevent="swicthCase(1)"  value="1"
                                     class="flex items-center justify-center w-24 h-24 bg-gray--100 text-gray-600 hover:bg-blue-500 transition duration-150 rounded-full font-bold hover:text-blue-50 cursor-pointer">
                                     {{balance.coin}} Mcoin</option>
-                                 <option value="2"
+                                 <option v-on:click.prevent="swicthCase(2)" value="2"
                                     class="flex items-center justify-center  w-24 h-24 bg-gray--100 text-gray-600 hover:bg-blue-500 transition duration-150 rounded-full font-bold hover:text-blue-50 cursor-pointer">
                                     {{balance.money}} $ </option>
                               </div>
@@ -282,10 +285,16 @@
                                                 class="text-center outline-none text-gray-700 text-lg" />
 
                                           </div>
-                                          <div class="flex justify-center border-2 py-2 px-6 rounded-xl">
+                                          <div v-if = "SendCoin" class="flex justify-center border-2 py-2 px-6 rounded-xl">
                                              <input v-model="TransferOrder.To" type="text" placeholder="Adresse"
                                                 class="w-full outline-none text-gray-700 text-lg" />
                                              <button type="submit"
+                                                class="bg-green-500 text-green-50 font-semibold px-6 py-2 rounded-xl text-md">Send</button>
+                                          </div>
+                                          <div  v-if = "SendMoney"  class="flex justify-center border-2 py-2 px-6 rounded-xl">
+                                             <input v-model="TransferOrder.To" type="text" placeholder="Account"
+                                                class="w-full outline-none text-gray-700 text-lg" />
+                                             <button  type="submit"
                                                 class="bg-green-500 text-green-50 font-semibold px-6 py-2 rounded-xl text-md">Send</button>
                                           </div>
                                           <span

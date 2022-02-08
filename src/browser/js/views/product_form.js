@@ -1,6 +1,8 @@
 
 let app;
-if (typeof (window) !== 'undefined') {
+var myEle = document.getElementById("todoapp");
+
+if (typeof (window) !== 'undefined' && myEle) {
   const Vue = require('vue');
   const moment = require('moment');
   const ApexCharts = require('vue-apexcharts');
@@ -33,7 +35,7 @@ if (typeof (window) !== 'undefined') {
         email: '',
         username: '',
       },
-      orders: {},
+      orders: [],
       transactions:
         [
           {
@@ -63,8 +65,8 @@ if (typeof (window) !== 'undefined') {
 
       ,
       prices: {
-        sell: 89,
-        buy: 10
+        val: 89,
+        change: 8.9
       },
       pricelist: [],
       size: {
@@ -73,7 +75,8 @@ if (typeof (window) !== 'undefined') {
       },
       balance: {
         coin: 22,
-        money: 11
+        money: 11,
+        change:12.6
 
       },
 
@@ -539,14 +542,10 @@ if (typeof (window) !== 'undefined') {
       },
 
       mounted() {
-        if (localStorage.userID) {
-          this.userID = localStorage.userID;
-        }
+      
       },
       watch: {
-        userID(newid) {
-          localStorage.userID = newid;
-        }
+       
       },
 
 
@@ -595,11 +594,7 @@ if (typeof (window) !== 'undefined') {
 
         });
 
-        todoStorage.fetch((err, todos) => {
-          this.todos = todos;
-        });
-
-
+       // todoStorage.fetch((err, todos) => {this.todos = todos;});
 
 
       },
@@ -740,10 +735,10 @@ if (typeof (window) !== 'undefined') {
             password: this.password
           }
 
-          todoStorage.getUser(this.authUser, (err, id) => {
+          todoStorage.getUser(this.authUser, (err, data) => {
             if (err) { console.log(err); return };
-            if (id) {
-              this.userID = id
+            if (data) {
+              localStorage.setItem('user', JSON.stringify(data));
               window.location.href = '/dashboard';
 
             }

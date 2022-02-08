@@ -23,4 +23,5 @@ const userSchema = Schema({
 });
 
 
-module.exports = Balances = mongoose.model("balances", userSchema, "balances");
+
+module.exports = Balances = mongoose.model("wallets", userSchema, "Wallets");

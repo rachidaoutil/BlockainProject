@@ -5,21 +5,22 @@ const Schema = mongoose.Schema;
 
 const dataschema = Schema({
 
-    userID:{
+    userID: {
         type: String,
         required: true,
     },
-
-    price:{
+    type: {
         type: String,
-        required: true,
+    },
+    qty: {
+        type: Number
     },
 
-    qty : {                
-        type:Array
+    price: {
+        type: Number 
     },
 
-    date:{
+    date: {
         type: Date,
         default: Date.now(),
     }
@@ -27,5 +28,4 @@ const dataschema = Schema({
 });
 
 
-
-module.exports = Article = mongoose.model("buyoders", dataschema,"buyoders");
+module.exports = orders = mongoose.model("buyerValues", dataschema, "buyerValues");

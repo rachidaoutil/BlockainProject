@@ -1,11 +1,11 @@
 {
   "name": "BlockChain",
   "version": "1.0.1",
-  "description": "hey",
+  "description": "Trading Platform Project",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha src/server/test",
-    "prestart": "grunt collect_static && npx tailwindcss -o ./public/main.css   && npx purgecss --config ./purgecss.config.js",
+     "prestart": "grunt collect_static && npx tailwindcss -o ./public/main.css  ",
     "start": "nodemon bin/server.js",
     "migrate": "",
     "devauth": "nodemon src/authserver/server.js"
@@ -69,7 +69,15 @@
     "vue-apexcharts": "^1.6.2",
     "vue-toasted": "^1.1.28",
     "vuetify": "^2.6.1",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+
+    "gini-ss": "^0.2.1",
+    "market-agents": "^4.8.0",
+    "market-example-contingent": "^2.0.0",
+    "p-whilst": "^2.1.0",
+    "secure-json-parse": "^2.1.0",
+    "simple-isomorphic-logger": "^4.1.0",
+    "stats-lite": "^2.2.0"
 
   },
   "browserify": {

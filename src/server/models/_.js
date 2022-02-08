@@ -9,14 +9,21 @@ const dataschema = Schema({
         type: String,
         required: true,
     },
-
-    price:{
+    status:{
         type: String,
+        required: true,
+    },
+    type:{
+        type: String,
+        required: true,
+    },
+    price:{
+        type: Number,
         required: true,
     },
 
     qty : {                
-        type:Array
+        type:Number
     },
 
     date:{
@@ -28,4 +35,4 @@ const dataschema = Schema({
 
 
 
-module.exports = Article = mongoose.model("buyorders", dataschema,"buyorders");
+module.exports = Article = mongoose.model("transactions", dataschema,"transactions");

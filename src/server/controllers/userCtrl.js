@@ -1,5 +1,6 @@
-const UserService = require("../services/UserService");
-
+const UserService = require("../services/UsersService");
+const UserBalanceService = require("../services/UserBalanceDataService");
+const UserWalletDataService = require("../services/UserWalletDataService");
 const reddisService = require("../services/reddisService");
 
 
@@ -20,6 +21,8 @@ module.exports = class User{
 
    static async apiGetUserById(req, res, next){
       console.log(req.body)
+      let Data = {}
+
       try {
          let id = req.body.username || {};
          let pass = req.body.password;
@@ -30,16 +33,34 @@ module.exports = class User{
          if(!isEmpty(user)){
             if (user.password === pass) {
                reddisService.CreateToken(req,res,user.id);
-               res.send(user)
-            }else{
-               res.send("Bad info!")
+               Data = {
+                  statusCode:1,
+                  msg:"Good",
+                  data: {
+                     userID:user._id,
+                     username:user.username,
+                     email:user.email
+                     }
+               }
+             }else{
+               Data = {
+                  statusCode:0,
+                  msg:"Bad info!"
+               }
             }
          }else{
-            res.send("Bad info!")
-         }
+            Data = {
+               statusCode:0,
+               msg:"Bad info!"
+            }         }
       } catch (error) {
-         res.status(500).json({error: error})
+         Data = {
+            statusCode:0,
+            msg:error
+         }
       }
+      res.json(Data);
+
    }
 
    static async apiCreateUser(req, res, next){
@@ -53,7 +74,12 @@ module.exports = class User{
                msg:"User Alrady Exist!"
             }
          }else{
+
             const createdUser =  await UserService.createUser(req.body);
+            const userAccount = await UserBalanceService.createAccount(createdUser);
+            const userWallet = await UserWalletDataService.createWallet(createdUser);
+
+
             if(createdUser.id){
                  Data = {
                   statusCode:1,

@@ -1,0 +1,810 @@
+<!doctype html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Trade </title>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+   <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+   <!--Totally optional :) -->
+
+
+
+   <link rel="stylesheet" href="/main.css">
+
+   <link rel="stylesheet" href="/app.min.css">
+
+   <link rel="icon" type="image/jpg" href="/image/logo.jpg">
+
+
+</head>
+
+<body>
+
+
+   <main id="trade" class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+
+      <!--Nav-->
+      <nav class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+
+         <div class="flex flex-wrap items-center">
+            <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+               <a href="">
+                  <span class="text-xl pl-2">
+
+                     Mcoin
+                  </span>
+               </a>
+            </div>
+
+            <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+               <span class="relative w-full">
+
+               </span>
+            </div>
+
+   
+            <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+               <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                <li class="flex-1 md:flex-none md:mr-3">
+                  <a v-on:click.prevent="showMoney()" class="inline-block py-2 px-4 text-white no-underline"
+                     href="">Balance : {{ showmoney ? balance.coin : balance.money}} {{ showmoney ?
+                     "M" : "$" }}</a>
+               </li>
+                  <li class="flex-1 md:flex-none md:mr-3">
+                     <div class="relative inline-block">
+                        <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none">
+                           <span class="pr-2"></span> Hi, {{user.username}} <svg class="h-3 fill-current inline"
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                           </svg></button>
+                        <div id="myDropdown"
+                           class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                           <a href="#" v-on:click.prevent="switchCase('profile')" class
+                              class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
+                                 class="fa fa-user fa-fw"></i> Profile</a>
+                           <div class="border border-gray-800"></div>
+                           <a href="/logout"
+                              class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
+                                 class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+
+      </nav>
+
+
+      <div class="flex flex-col md:flex-row">
+
+         <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+
+            <div
+               class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+               <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
+                  <li class="mr-3 flex-1">
+
+                     <a href="/Dashboard"
+                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                        <i class="fas fa-chart-area pr-0 md:pr-3 text-gray-400"></i> <span
+                           class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-gray-400 block  block md:inline-block">
+                           Dashboard</span>
+                     </a>
+
+
+                  </li>
+                  <li class="mr-3 flex-1">
+                    <a href="/wallet"
+                       class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800  hover:border-red-600">
+                       <i class="fa fa-wallet pr-0 md:pr-3 text-gray-400"></i> <span
+                          class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 block md:inline-block">Wallet</span>
+                    </a>
+                 </li>
+                  <li class="mr-3 flex-1">
+
+
+                     <a href="" v-on:click.prevent="switchCase('dash')"
+                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline text-white border-b-2 border-gray-800 border-pink-500">
+                        <i class="fas fa-tasks pr-0 md:pr-3 text-white"></i><span
+                           class="pb-1 md:pb-0 text-xs md:text-base text-white block md:inline-block">Trade</span>
+                     </a>
+
+
+                  </li>
+                  <li class="mr-3 flex-1">
+                     <a v-on:click.prevent="switchCase('trans')"
+                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800  hover:border-blue-600">
+                        <i class="fa fa-wallet pr-0 md:pr-3 text-gray-400"></i> <span
+                           class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 block md:inline-block">Transaction</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+
+
+         </div>
+
+         <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+            <div class="bg-gray-800 pt-3">
+               <div class="rounded-tl-3xl bg-gradient-to-r from-blue-600 to-blue-400 p-4 shadow text-2xl text-white">
+
+                  <h3 class="font-bold pl-2">Trade</h3>
+
+
+
+               </div>
+            </div>
+
+               <main>
+
+                <div v-if="transferDone"
+                class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+                id="modal-id">
+                <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+                <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+                   <!--content-->
+                   <div class="">
+                      <!--body-->
+                      <div class="text-center p-5 flex-auto justify-center">
+    
+                         <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-24 h-24 -m-1 flex items-center text-red-500 mx-auto"
+                            viewBox="0 0 512.065 332.845">
+                            <g id="_2e66bd29-39ca-4e96-a756-5bc9fa43d7c8"
+                               data-name="2e66bd29-39ca-4e96-a756-5bc9fa43d7c8" transform="translate(0 -89.6)">
+                               <path id="Path_1" data-name="Path 1"
+                                  d="M332.8,256A166.4,166.4,0,1,0,166.4,422.4,166.4,166.4,0,0,0,332.8,256ZM180.57,317.88v8c0,5.22-1.68,6.9-6.9,6.9H159.51c-5,0-6.9-1.68-6.9-6.9v-7.64c-18.27-2.8-30.2-11.93-36-27.22q-2.52-7.27,5-10.06l12.68-4.48c5.41-2,8-.93,10.44,4.48,3,7.64,9.88,11.37,20.51,11.37,14.17,0,21.25-3.92,21.25-11.94,0-7.45-7.27-9.88-22-11.37-10.44-1.31-15.85-1.87-25.36-5.59a32.34,32.34,0,0,1-11.55-6.52c-5.78-5-10.63-14.54-10.63-26.65,0-19.58,12.49-33,35.61-36.72v-7.65c0-5,1.86-6.71,6.9-6.71h14.17c5.22,0,6.9,1.68,6.9,6.71v7.65c15.1,2.61,25.73,10.62,32.06,24.23,2.8,5.22,1.49,8-4.29,10.44L195.49,234c-5,2.24-7.46,1.49-10.26-3.73-3.73-7.27-8.57-10.81-18.82-10.81-13.23,0-18.83,2.8-18.83,10.81,0,6.9,7.83,9.51,22.18,11A129.808,129.808,0,0,1,191,244.81a36.371,36.371,0,0,1,10.07,4.29c8.39,5,16.4,14.72,15.66,30.76C216.74,299.8,203.69,313.6,180.57,317.88Z"
+                                  fill="#141f38" />
+                               <path id="Path_2" data-name="Path 2"
+                                  d="M345.6,89.6a165.87,165.87,0,0,0-64,12.78,192,192,0,0,1,0,307.24,166.41,166.41,0,1,0,64-320Z"
+                                  fill="#141f38" />
+                            </g>
+                         </svg>
+    
+    
+                         <h2 class="text-xl font-bold py-4 ">Succesful Transfer</h3>
+                            <p class="text-sm text-gray-500 px-8">The Current Balance is <strong
+                                  class="font-bold"> {{balance.coin}}
+                            </p>
+                      </div>
+                      <!--footer-->
+                      <div class="p-3  mt-2 text-center space-x-4 md:block">
+                         <button v-on:click.prevent="okDone"
+                            class="mb-2 md:mb-0 bg-green-500 border border-green-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-600">Ok</button>
+                      </div>
+                   </div>
+                </div>
+             </div>
+    
+    
+             <div v-if="AskMe"
+                class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+                id="modal-id">
+                <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+                <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+                   <!--content-->
+                   <div class="">
+                      <!--body-->
+                      <div class="text-center p-5 flex-auto justify-center">
+    
+                         <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-24 h-24 -m-1 flex items-center text-red-500 mx-auto"
+                            viewBox="0 0 512.065 332.845">
+                            <g id="_2e66bd29-39ca-4e96-a756-5bc9fa43d7c8"
+                               data-name="2e66bd29-39ca-4e96-a756-5bc9fa43d7c8" transform="translate(0 -89.6)">
+                               <path id="Path_1" data-name="Path 1"
+                                  d="M332.8,256A166.4,166.4,0,1,0,166.4,422.4,166.4,166.4,0,0,0,332.8,256ZM180.57,317.88v8c0,5.22-1.68,6.9-6.9,6.9H159.51c-5,0-6.9-1.68-6.9-6.9v-7.64c-18.27-2.8-30.2-11.93-36-27.22q-2.52-7.27,5-10.06l12.68-4.48c5.41-2,8-.93,10.44,4.48,3,7.64,9.88,11.37,20.51,11.37,14.17,0,21.25-3.92,21.25-11.94,0-7.45-7.27-9.88-22-11.37-10.44-1.31-15.85-1.87-25.36-5.59a32.34,32.34,0,0,1-11.55-6.52c-5.78-5-10.63-14.54-10.63-26.65,0-19.58,12.49-33,35.61-36.72v-7.65c0-5,1.86-6.71,6.9-6.71h14.17c5.22,0,6.9,1.68,6.9,6.71v7.65c15.1,2.61,25.73,10.62,32.06,24.23,2.8,5.22,1.49,8-4.29,10.44L195.49,234c-5,2.24-7.46,1.49-10.26-3.73-3.73-7.27-8.57-10.81-18.82-10.81-13.23,0-18.83,2.8-18.83,10.81,0,6.9,7.83,9.51,22.18,11A129.808,129.808,0,0,1,191,244.81a36.371,36.371,0,0,1,10.07,4.29c8.39,5,16.4,14.72,15.66,30.76C216.74,299.8,203.69,313.6,180.57,317.88Z"
+                                  fill="#141f38" />
+                               <path id="Path_2" data-name="Path 2"
+                                  d="M345.6,89.6a165.87,165.87,0,0,0-64,12.78,192,192,0,0,1,0,307.24,166.41,166.41,0,1,0,64-320Z"
+                                  fill="#141f38" />
+                            </g>
+                         </svg>
+    
+    
+                         <h2 class="text-xl font-bold py-4 ">Are you sure?</h3>
+                            <p class="text-sm text-gray-500 px-8">Do you really want to trade<strong
+                                 >{{Order.qty}} </strong>To <strong > {{Order.price}}
+                               </strong>,
+                               This process cannot be undone</p>
+                      </div>
+                      <!--footer-->
+                      <div class="p-3  mt-2 text-center space-x-4 md:block">
+                         <button v-on:click.prevent="askMe"
+                            class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+                            Cancel
+                         </button>
+                         <button id="sendbtn" v-on:click.prevent="checkOrderForm"
+                            class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">Send</button>
+                      </div>
+                   </div>
+                </div>
+             </div>
+    
+
+
+                  <div class="flex flex-row flex-wrap flex-grow mt-2">
+        
+                     <div class="w-full  md:w-1/2 xl:w-1/2  p-6">
+                         <!--Graph Card-->
+                         <div class="bg-white border-transparent rounded-lg shadow-xl">
+                             <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                                 <h5 class="font-bold uppercase text-gray-600">Price</h5>
+                             </div>
+                             <div class="p-5">
+
+                               
+                               <div id="chart">
+                                 <div class="toolbar">
+                                   <button id="one_month"
+                                       @click="updateData('one_month')" class="text-white font-bold py-2 px-4 rounded bg-blue-500 hover:bg-violet-400 active:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300 ">
+                                       
+                                     1M
+                                   </button>
+                                   
+                                   <button id="six_months"
+                                       @click="updateData('six_months')" class="text-white font-bold py-2 px-4 rounded bg-blue-500 hover:bg-violet-400 active:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300"
+                                       >
+                                     6M
+                                   </button>
+                                   
+                                   <button id="one_year"
+                                       
+                                       @click="updateData('one_year')" class="text-white font-bold py-2 px-4 rounded bg-blue-500 hover:bg-violet-400 active:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300"
+                                       >
+                                     1Y
+                                   </button>
+                                   
+                                   <button id="ytd"
+                                       @click="updateData('ytd')" class="text-white font-bold py-2 px-4 rounded bg-blue-500 hover:bg-violet-400 active:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300"
+                                       >
+                                     YTD
+                                   </button>
+                                   
+                                   <button id="all"
+                                       @click="updateData('all')" class="text-white font-bold py-2 px-4 rounded bg-blue-500 hover:bg-violet-400 active:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300"
+                                       >
+                                     ALL
+                                   </button>
+                                 </div>
+                               
+                                 <div id="chart">
+                                  <apexchart :key="testKey" ref="realtimeChart" type="candlestick" height="350" :options="chartOptions" :series="series"></apexchart>
+                                </div>
+                              
+                               </div>
+
+                             </div>
+                         </div>
+                         <!--/Graph Card-->
+                     </div>        
+
+                     <div class="w-full  md:w-1/2 xl:w-1/2  p-6">
+                       <!--Graph Card-->
+                       <div class="bg-white border-transparent rounded-lg shadow-xl">
+                           <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                               <h5 class="font-bold uppercase text-gray-600">Cerculations</h5>
+                           </div>
+                           <div class="p-5">
+
+                             
+                                 <div id="chart">
+                                   <apexchart type="area" height="350" :options="chartOptions2" :series="series2"></apexchart>
+                                 </div>
+                             
+
+
+                           </div>
+                       </div>
+                       <!--/Graph Card-->
+                   </div>
+                      
+                     <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                         <!--Table Card-->
+                         <div class="bg-white border-transparent rounded-lg shadow-xl">
+                             <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                                 <h5 class="font-bold uppercase text-gray-600">Buy</h5>
+                             </div>
+                            
+                             <div
+                               class="
+                                 flex flex-col
+                                 px-4
+                                 sm:px-6
+                                 md:px-8
+                                 lg:px-10
+                                 py-8
+                                 rounded-3xl
+                               "
+                             >
+                               <div class="font-medium self-center text-xl sm:text-3xl text-gray-800">
+                                 Buy MCoin
+                               </div>
+                               <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
+                                 Current Balance: {{balance.money}} $
+
+                               </div>
+                       
+                               <div class="mt-10">
+                                <form @submit="checkOrderForm('buy',$event)" >
+                                  <div class="flex flex-col mb-5">
+                                     <label
+                                       for="email"
+                                       class="mb-1 text-xs tracking-wide text-gray-600"
+                                       >Amount</label
+                                     >
+                                     <div class="relative">
+                                       <div
+                                         class="
+                                           inline-flex
+                                           items-center
+                                           justify-center
+                                           absolute
+                                           left-0
+                                           top-0
+                                           h-full
+                                           w-10
+                                           text-gray-400
+                                         "
+                                       >
+                                         <i class="fas fa-at text-blue-500"></i>
+                                       </div>
+                       
+                                       <input
+                                       v-model='newBuyOrder.qty'
+                                         id="amountbuy"
+                                         type="number"
+                                         name="amount"
+                                         class="
+                                           text-sm
+                                           placeholder-gray-500
+                                           pl-10
+                                           pr-4
+                                           rounded-2xl
+                                           border border-gray-400
+                                           w-full
+                                           py-2
+                                           focus:outline-none focus:border-blue-400
+                                         "
+                                         placeholder="Amount to buy"
+                                       />
+                                     </div>
+                                   </div>
+                                   <div class="flex flex-col mb-6">
+                                     <label
+                                       for="password"
+                                       class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                                       >Pice:</label
+                                     >
+                                     <div class="relative">
+                                       <div
+                                         class="
+                                           inline-flex
+                                           items-center
+                                           justify-center
+                                           absolute
+                                           left-0
+                                           top-0
+                                           h-full
+                                           w-10
+                                           text-gray-400
+                                         "
+                                       >
+                                         <span>
+                                           <i class="fas fa-lock text-blue-500"></i>
+                                         </span>
+                                       </div>
+                       
+                                       <input
+                                         v-model='newBuyOrder.price'
+                                         id="buyprice"
+                                         type="number"
+                                         name="price"
+                                         class="
+                                           text-sm
+                                           placeholder-gray-500
+                                           pl-10
+                                           pr-4
+                                           rounded-2xl
+                                           border border-gray-400
+                                           w-full
+                                           py-2
+                                           focus:outline-none focus:border-blue-400
+                                         "
+                                       />
+                                     </div>
+                                   </div>
+                       
+                                   <div class="flex w-full">
+                                     <button
+                                     id="buybtn"
+
+                                     type="submit"
+                                       class="
+                                         flex
+                                         mt-2
+                                         items-center
+                                         justify-center
+                                         focus:outline-none
+                                         text-white text-sm
+                                         sm:text-base
+                                         bg-blue-500
+                                         hover:bg-blue-600
+                                         rounded-2xl
+                                         py-2
+                                         w-full
+                                         transition
+                                         duration-150
+                                         ease-in
+                                       "
+                                     >
+                                   
+                                       <span class="mr-2 uppercase">Place Order</span>
+                                       <span>
+                                         <svg
+                                           class="animate-none	 h-6 w-6"
+                                           fill="none"
+                                           stroke-linecap="round"
+                                           stroke-linejoin="round"
+                                           stroke-width="2"
+                                           viewBox="0 0 24 24"
+                                           stroke="currentColor"
+                                         >
+                                           <path
+                                             d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                           />
+                                         </svg>
+                                       </span>
+                                     </button>
+                                   </div>
+                                 </form>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                         <!--/table Card-->
+
+                     <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                       <!--Table Card-->
+                       <div class="bg-white border-transparent rounded-lg shadow-xl">
+                           <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                               <h5 class="font-bold uppercase text-gray-600">Sell</h5>
+                           </div>
+                          
+                           <div
+                             class="
+                               flex flex-col
+                               px-4
+                               sm:px-6
+                               md:px-8
+                               lg:px-10
+                               py-8
+                               rounded-3xl
+                             "
+                           >
+                             <div class="font-medium self-center text-xl sm:text-3xl text-gray-800">
+                               Sell MCoin
+                             </div>
+                             <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
+                               Your Current Balance: {{balance.coin}} Mcoin
+
+                             </div>
+                     
+                             <div class="mt-10">
+                               <form @submit="checkOrderForm('sell',$event)" >
+                                 <div class="flex flex-col mb-5">
+                                   <label
+                                     for="email"
+                                     class="mb-1 text-xs tracking-wide text-gray-600"
+                                     >Amount:</label
+                                   >
+                                   <div class="relative">
+                                     <div
+                                       class="
+                                         inline-flex
+                                         items-center
+                                         justify-center
+                                         absolute
+                                         left-0
+                                         top-0
+                                         h-full
+                                         w-10
+                                         text-gray-400
+                                       "
+                                     >
+                                       <i class="fas fa-at text-blue-500"></i>
+                                     </div>
+                     
+                                     <input
+                                     v-model='Order.qty'
+                                       id="amount"
+                                       type="number"
+                                       name="amount"
+                                       class="
+                                         text-sm
+                                         placeholder-gray-500
+                                         pl-10
+                                         pr-4
+                                         rounded-2xl
+                                         border border-gray-400
+                                         w-full
+                                         py-2
+                                         focus:outline-none focus:border-blue-400
+                                       "
+                                       placeholder="Amount to sell"
+                                     />
+                                   </div>
+                                 </div>
+                                 <div class="flex flex-col mb-6">
+                                   <label
+                                     for="password"
+                                     class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                                     >Price:</label
+                                   >
+                                   <div class="relative">
+                                     <div
+                                       class="
+                                         inline-flex
+                                         items-center
+                                         justify-center
+                                         absolute
+                                         left-0
+                                         top-0
+                                         h-full
+                                         w-10
+                                         text-gray-400
+                                       "
+                                     >
+                                       <span>
+                                         <i class="fas fa-lock text-blue-500"></i>
+                                       </span>
+                                     </div>
+                     
+                                     <input
+                                     v-model='newSellOrder.price'
+
+                                       id="price"
+                                       type="number"
+                                       name="price"
+                                       class="
+                                         text-sm
+                                         placeholder-gray-500
+                                         pl-10
+                                         pr-4
+                                         rounded-2xl
+                                         border border-gray-400
+                                         w-full
+                                         py-2
+                                         focus:outline-none focus:border-blue-400
+                                       "
+                                     />
+                                   </div>
+                                 </div>
+                     
+                                 <div class="flex w-full">
+                                   <button
+                                     type="submit"
+                                     class="
+                                       flex
+                                       mt-2
+                                       items-center
+                                       justify-center
+                                       focus:outline-none
+                                       text-white text-sm
+                                       sm:text-base
+                                       bg-blue-500
+                                       hover:bg-blue-600
+                                       rounded-2xl
+                                       py-2
+                                       w-full
+                                       transition
+                                       duration-150
+                                       ease-in
+                                     "
+                                   >
+                                     <span class="mr-2 uppercase">Place order</span>
+                                     <span>
+                                       <svg
+                                         class="h-6 w-6"
+                                         fill="none"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         stroke-width="2"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor"
+                                       >
+                                         <path
+                                           d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                         />
+                                       </svg>
+                                     </span>
+                                   </button>
+                                 </div>
+                               </form>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                       <!--/table Card-->
+
+                     <div class="w-full p-6">
+                                 <div class="w-full">
+                                   <div class=" flex flex-col break-words bg-white w-full mb-6 shadow-lg rounded ">
+                                     <div class="rounded-t mb-0 px-4 py-3 border-0">
+                                       <div class="flex flex-wrap items-center">
+                                         <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                           <h3 class="font-semibold text-base text-blueGray-700">Active Transactions</h3>
+                                         </div>
+       
+                                       </div>
+                                     </div>
+                                 
+                                     <div class="block w-full overflow-x-auto">
+                                       <table class="items-center bg-transparent w-full border-collapse ">
+                                         <thead>
+                                           <tr>
+                                             <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                               Date
+                                             </th>
+                                           <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                             Type
+                                           </th>
+                                           <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                             Amount
+                                           </th>
+                                           <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                             Price
+                                           </th>
+                                           <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                             Status
+                                           </th>
+                                           </tr>
+                                         </thead>
+                                 
+                                         <tbody>
+
+                                           <tr  v-for="(order,i) in orders" :key="i">
+                                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                                               {{order.date}}
+                                             </td>
+                                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                                               {{order.type}}
+                                             </td>
+                                             <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                               {{order.amount}}
+                                             </td>
+                                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                               <i v-if="prices.sell > order.price && order.type === 'sell' " class="fas fa-arrow-up text-green-500 mr-4"></i>
+                                               <i v-if="prices.buy > order.price && order.type === 'buy' " class="fas fa-arrow-up text-green-500 mr-4"></i>
+
+                                               <i v-if="order.price > prices.sell  && order.type === 'sell' "class="fas fa-arrow-down text-red-500 mr-4"></i>
+                                               <i v-if="order.price > prices.buy  && order.type === 'buy' "class="fas fa-arrow-down text-red-500 mr-4"></i>
+
+                                                {{order.price}}
+                                             </td>
+                                             <td class="px-6 py-4 whitespace-nowrap">
+                                               <button class="animate-pulse	 bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                                 Cancel
+                                                 
+                                               </button>
+                                             </td>
+                                      
+                                           </tr>
+                                          
+                               
+                                         </tbody>
+                                 
+                                       </table>
+                                     </div>
+                                   </div>
+                                 </div>
+
+                       </div>
+
+
+                     <div class="w-full p-6">
+                       <!--Graph Card-->
+                       <div class="bg-white border-transparent rounded-lg shadow-xl">
+                          
+
+                           <div class="rounded-t mb-0 px-4 py-3 border-0">
+                             <div class="flex flex-wrap items-center">
+                               <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                 <h3 class="font-semibold text-base text-blueGray-700">Market Distrubution</h3>
+                               </div>
+                             </div>
+                           </div>
+
+                           <div class="p-5">
+
+                             
+                             <div id="chart">
+                               <apexchart type="area" height="350" :options="chartOptions3" :series="series3"></apexchart>
+                             </div>
+                           
+                             
+
+
+                           </div>
+                       </div>
+                       <!--/Graph Card-->
+                   </div>
+
+
+                     </div>
+               </main>
+
+
+
+
+
+         </div>
+
+      </div>
+      </div>
+
+
+
+
+
+   </main>
+
+   <script>
+      /*Toggle dropdown list*/
+      function toggleDD(myDropMenu) {
+         document.getElementById(myDropMenu).classList.toggle("invisible");
+      }
+      /*Filter dropdown options*/
+      function filterDD(myDropMenu, myDropMenuSearch) {
+         var input, filter, ul, li, a, i;
+         input = document.getElementById(myDropMenuSearch);
+         filter = input.value.toUpperCase();
+         div = document.getElementById(myDropMenu);
+         a = div.getElementsByTagName("a");
+         for (i = 0; i < a.length; i++) {
+            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+               a[i].style.display = "";
+            } else {
+               a[i].style.display = "none";
+            }
+         }
+      }
+      // Close the dropdown menu if the user clicks outside of it
+      window.onclick = function (event) {
+         if (!event.target.matches('.drop-button') && !event.target.matches('.drop-search')) {
+            var dropdowns = document.getElementsByClassName("dropdownlist");
+            for (var i = 0; i < dropdowns.length; i++) {
+               var openDropdown = dropdowns[i];
+               if (!openDropdown.classList.contains('invisible')) {
+                  openDropdown.classList.add('invisible');
+               }
+            }
+         }
+      }
+   </script>
+
+   <script src="/socket.io/socket.io.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+   <% if (env==='production' ) { %>
+      <script src="/app.minƒ.js"></script>
+      <% } else { %>
+         <script src="/app.js"></script>
+         <% } %>
+</body>
+
+
+<script>
+  // without jQuery (doesn't work in older IEs)
+
+</script>
+
+
+</html>

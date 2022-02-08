@@ -35,6 +35,15 @@ module.exports = class UserService{
         }
     }
 
+    static async getUserByUserID(UserID){
+        try {
+            const singleUserResponse =  await User.findOne({_id: UserID});
+            return singleUserResponse;
+        } catch (error) {
+            console.log(`User not found. ${error}`)
+        }
+    }
+
     static async updateUser(username, email, fullname){
             try {
                 const updateResponse =  await User.updateOne(
