@@ -110,7 +110,7 @@ if (myEle) {
       selection: 'one_year',
 
       series2: [{
-        name: 'XYZ MOTORS',
+        name: 'Predictions',
         data: [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5]
       }],
       chartOptions2: {
@@ -134,7 +134,7 @@ if (myEle) {
           size: 0,
         },
         title: {
-          text: 'Stock Price Movement',
+          text: 'Price Movement',
           align: 'left'
         },
         fill: {
