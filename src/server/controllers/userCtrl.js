@@ -83,7 +83,7 @@ module.exports = class User{
             if(createdUser.id){
                  Data = {
                   statusCode:1,
-                  msg:"Good",
+                  msg:"Good!",
                   data:createdUser
                }
             }else{
