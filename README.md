@@ -1,3 +1,6 @@
+## Online Demo 
+    http://cherifproject.herokuapp.com/
+
 ## Running Locally
 
 ### Installing Node.js and npm
