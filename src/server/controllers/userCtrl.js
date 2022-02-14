@@ -89,7 +89,7 @@ module.exports = class User{
             }else{
                Data = {
                   statusCode:0,
-                  msg:"Faild please try Again!",
+                  msg:"Faild please try Again",
 
                }
             }
